@@ -11,18 +11,13 @@ def makeData(line: str):
     
     return date, time, price
 
-next_price = 0.0
-pr_price = 0.0
-start_date = 0
 data = [0, 0.0]
 
 flag_for_sale = False
-counter_for_sale = 0
 i_sale = 0
 mass_for_sale = [0.0]
 
 flag_for_buy = True
-counter_for_buy = 0
 i_buy = 0
 mass_for_buy = [20000.0]
 
@@ -36,12 +31,6 @@ with open("new.csv", "r") as f:
             continue
         else:
             date, time, price = makeData(line)
-            
-        '''if time == 184000 and data[1] > price:
-            counter_for_sale += 1
-            
-        if time == 184000:
-            counter_for_buy += 1'''
 
         if price > mass_for_sale[i_sale]:
             mass_for_sale.append(price)
@@ -56,7 +45,6 @@ with open("new.csv", "r") as f:
             flag_for_sale = True
             mass_for_sale = [0.0]
             i_sale = 0
-            #counter_for_sale = 0
 
         if (data[0] != 0) and flag_for_sale:            
             print('- '*15)
@@ -75,7 +63,6 @@ with open("new.csv", "r") as f:
             flag_for_buy = True
             mass_for_buy = [20000.0]
             i_buy = 0
-            #counter_for_buy = 0
 
         if (data[0] == 0) and flag_for_buy and capital > price:
             print('- '*15)
